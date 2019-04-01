@@ -21,3 +21,6 @@ def generateFibonacci(n):
 def main():
     print(generateFibonacci(5))
     print(generateFibonacci(9))
+
+
+print(main())

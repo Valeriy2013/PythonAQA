@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
 
-    working_directory: ~/repo
+    working_directory: ~/PythonAQA
 
     steps:
       # Step 1: obtain repo from GitHub
