@@ -1,0 +1,40 @@
+{
+    "PERSONS": [
+        {
+            "FIRST_NAME": "First1",
+            "LAST_NAME": "Last1",
+            "YEAR_OF_BIRTH": "2001",
+            "MONTH_OF_BIRTH": "Jan",
+            "DAY_OF_BIRTH": "1",
+            "COMPANY": "company1",
+            "PROJECT": "project1",
+            "ROLE": "role1",
+            "ROOM": "room#1",
+            "HOBBY": "hobby1"
+        },
+        {
+            "FIRST_NAME": "First2",
+            "LAST_NAME": "Last2",
+            "YEAR_OF_BIRTH": "2002",
+            "MONTH_OF_BIRTH": "Jan",
+            "DAY_OF_BIRTH": "2",
+            "COMPANY": "company2",
+            "PROJECT": "project2",
+            "ROLE": "role2",
+            "ROOM": "room#2",
+            "HOBBY": "hobby2"
+        },
+        {
+            "FIRST_NAME": "First3",
+            "LAST_NAME": "Last3",
+            "YEAR_OF_BIRTH": "2003",
+            "MONTH_OF_BIRTH": "Jan",
+            "DAY_OF_BIRTH": "3",
+            "COMPANY": "company3",
+            "PROJECT": "project3",
+            "ROLE": "role3",
+            "ROOM": "room#3",
+            "HOBBY": "hobby3"
+        }
+    ]
+}
