@@ -24,7 +24,6 @@ class Person(object):
 
 
 def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
-    # full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), path_to_source_file)
     if isFileExist(path_to_source_file):
         print("File exists")
         tree = xml.parse(path_to_source_file)
@@ -58,7 +57,8 @@ def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
 
 
 def isFileExist(path_to_file):
-    return os.path.exists(path_to_file)
+    full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), path_to_file)
+    return os.path.exists(full_path)
 
 
 def parseXmlToObj(xml):
