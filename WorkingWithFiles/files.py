@@ -58,6 +58,8 @@ def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
 
 def isFileExist(path_to_file):
     full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), path_to_file)
+    print(full_path)
+    print(os.path.exists(full_path))
     return os.path.exists(full_path)
 
 
