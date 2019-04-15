@@ -61,6 +61,11 @@ def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
         print("File doesn't exist.")
 
 
+def readFileContent(path_to_file):
+    with open(fullPathToFile(path_to_file), "r") as f:
+        return f.read()
+
+
 def isFileExist(path_to_file):
     return os.path.exists(fullPathToFile(path_to_file))
 
