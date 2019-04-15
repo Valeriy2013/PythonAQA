@@ -26,6 +26,8 @@ class Person(object):
 def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
     full_path_source = fullPathToFile(path_to_source_file)
     full_path_dest = fullPathToFile(path_to_destination_file)
+    print("Source path: ", full_path_source)
+    print("Destination path: ", full_path_dest)
     if isFileExist(full_path_source):
         print("File exists")
         tree = xml.parse(full_path_source)
@@ -47,11 +49,12 @@ def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
             i += 1
 
         # write changes back to xml file
-        tree.write(fullPathToFile(path_to_source_file))
+        tree.write(full_path_source)
 
         # convert xml to json
         obj = parseXmlToObj((xml.parse(full_path_source)).getroot())
         result = {'PERSONS': obj}
+        print("Destination file exists? ", isFileExist(full_path_dest))
         with open(full_path_dest, "w") as write_file:
             json.dump(result, write_file, indent=4)
     else:
@@ -64,7 +67,6 @@ def isFileExist(path_to_file):
 
 def fullPathToFile(path_to_file):
     full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), path_to_file)
-    print(full_path)
     return full_path
 
 
