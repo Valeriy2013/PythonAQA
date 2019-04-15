@@ -58,7 +58,7 @@ def dataFileProcessing(path_to_source_file, path_to_destination_file, data):
 
 
 def isFileExist(path_to_file):
-    return os.path.isfile(path_to_file)
+    return os.path.exists(path_to_file)
 
 
 def parseXmlToObj(xml):
