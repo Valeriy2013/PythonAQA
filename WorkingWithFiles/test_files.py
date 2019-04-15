@@ -3,7 +3,7 @@ Unit tests for the files library
 """
 
 import WorkingWithFiles.files as f
-import pytest
+# import pytest
 
 from WorkingWithFiles.files import Person
 
