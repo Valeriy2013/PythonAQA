@@ -1,9 +1,9 @@
-# Python CircleCI 2.0 configuration file
-version: 2
+# Python CircleCI 3.0 configuration file
+version: 3
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/python:3.7.3-stretch-browsers
 
     working_directory: ~/PythonAQA
 
