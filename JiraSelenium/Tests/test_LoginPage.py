@@ -7,20 +7,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class TestLoginPage(TestTemplate):
 
-    def setup_method(self):
-        self._driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-        self.login_page = LoginPage(self._driver)
-        self.login_page.navigate('https://jira.hillel.it/projects/WEBINAR')
-
-    def teardown_method(self):
-        self._driver.quit()
-
     def test_login_positive(self):
         assert self.login_page.is_at('Log in - Hillel IT School JIRA')
         self.login_page.login_to_jira('ValeriiSokolovskyi', 'ValeriiSokolovskyi')
-        self.issue_page = IssuesPage(self._driver)
-        assert self.issue_page.is_at('- Hillel IT School JIRA')
-        assert self.issue_page.is_user_details_visible()
+        assert self.issues_page.is_user_details_visible()
 
     def test_login_negative_wrong_username(self):
         self.login_page.set_username('wrong_name@wrong.name')
@@ -33,3 +23,12 @@ class TestLoginPage(TestTemplate):
         self.login_page.set_password('wrong_password')
         self.login_page.click_login()
         assert self.login_page.is_login_error_visible()
+
+    def setup_method(self):
+        self._driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        self.login_page = LoginPage(self._driver)
+        self.issues_page = IssuesPage(self._driver)
+        self.login_page.navigate('https://jira.hillel.it/projects/WEBINAR')
+
+    def teardown_method(self):
+        self._driver.quit()
