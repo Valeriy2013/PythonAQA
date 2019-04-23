@@ -7,12 +7,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class TestLoginPage(TestTemplate):
 
-    def setUp(self):
+    def setup_method(self):
         self._driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
         self.login_page = LoginPage(self._driver)
         self.login_page.navigate('https://jira.hillel.it/projects/WEBINAR')
 
-    def tearDown(self):
+    def teardown_method(self):
         self._driver.quit()
 
     def test_login_positive(self):
