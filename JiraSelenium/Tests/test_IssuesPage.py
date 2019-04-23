@@ -2,7 +2,6 @@ from JiraSelenium.Tests.TestTemplate import TestTemplate
 from JiraSelenium.Pages.CreateIssuePage import Issue
 
 
-
 class TestIssuesPage(TestTemplate):
 
     def test_create_issue(self):
