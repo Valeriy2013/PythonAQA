@@ -1,9 +1,6 @@
-from JiraSelenium.Pages.LoginPage import LoginPage
-from JiraSelenium.Pages.IssuesPage import IssuesPage
 from JiraSelenium.Tests.TestTemplate import TestTemplate
 from JiraSelenium.Pages.CreateIssuePage import Issue
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 
 class TestIssuesPage(TestTemplate):
