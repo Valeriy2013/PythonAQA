@@ -15,6 +15,7 @@ class TestTemplate:
         # self.driver = webdriver.Chrome(chrome_driver)
         # self.driver.implicitly_wait(10)
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        self.driver.set_window_size(1366, 768)
         self.driver.maximize_window()
         self.login_page = LoginPage(self.driver)
         self.issues_page = IssuesPage(self.driver)
