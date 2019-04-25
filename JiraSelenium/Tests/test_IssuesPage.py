@@ -46,7 +46,7 @@ class TestIssuesPage(TestTemplate):
         self.issues_page.create_update_issue(criteria, create_or_update='create')
         assert self.issues_page.is_issue_created()[0]
         self.issues_page.search(criteria)
-        self.issues_page.switch_view('List')
+        # self.issues_page.switch_view('List')
         assert criteria.summary in self.issues_page.get_row_content(0)
         # assert self.issues_page.get_results_count() == 1
 
@@ -54,7 +54,7 @@ class TestIssuesPage(TestTemplate):
     def test_search_no_issue_found(self):
         criteria = Issue('Webinar (WEBINAR)', 'Bug', '###WILL NOT BE FOUND###', '', '')
         self.issues_page.search(criteria)
-        self.issues_page.switch_view('List')
+        # self.issues_page.switch_view('List')
         assert self.issues_page.no_results()
 
     @pytest.mark.parametrize('updated_issue', [
