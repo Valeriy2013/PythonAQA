@@ -17,6 +17,8 @@ class TestTemplate:
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument("--no-sandbox")
         self.chrome_options.add_argument('--disable-extensions')
+        self.chrome_options.add_argument("--disable-notifications")
+        self.chrome_options.add_argument("--enable-automation")
         # self.chrome_options.add_argument("--headless")
         self.chrome_options.add_argument('--disable-infobars')
         self.chrome_options.add_argument("--disable-gpu")
