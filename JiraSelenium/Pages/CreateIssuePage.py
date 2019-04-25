@@ -1,28 +1,101 @@
-from JiraSelenium.Pages.BasePage import BasePage
+import time
+
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+from JiraSelenium.Pages.BasePage import BasePage
 
 
 class CreateIssuePage(BasePage):
     PROJECT = (By.ID, 'project-field')
+    PROJECT_SELECT = (By.ID, 'project-single-select')
     ISSUE_TYPE = (By.ID, 'issuetype-field')
-    SUMMARY = (By.ID, 'summary')
+    ISSUE_TYPE_SELECT = (By.ID, 'issuetype-single-select')
     PRIORITY = (By.ID, 'priority-field')
+    PRIORITY_SELECT = (By.ID, 'priority-single-select')
     ASSIGNEE = (By.ID, 'assignee-field')
+    ASSIGNEE_SELECT = (By.ID, 'assignee-single-select')
+    SUMMARY = (By.ID, 'summary')
+    UPDATE_ISSUE_BTN = (By.ID, 'edit-issue-submit')
     CREATE_ISSUE_BTN = (By.ID, 'create-issue-submit')
     CANCEL_BTN = (By.CSS_SELECTOR, 'a.cancel')
+    SUMMARY_REQUIRED_ERROR = (By.XPATH, '//*[@class="error" and text() = "You must specify a summary of the issue."]')
+    SUMMARY_TOO_LONG_ERROR = (By.XPATH, '//*[@class="error" and text() = "Summary must be less than 255 characters."]')
 
-    def fill_form(self, issue):
-        self.is_visible(*self.PROJECT)
-        self._driver\
-            .execute_script("document.getElementById('" + self.PROJECT[1] + "').value='" + issue.project + "'")
-        self._driver\
-            .execute_script("document.getElementById('" + self.ISSUE_TYPE[1] + "').value='" + issue.issue_type + "'")
-        self._driver\
-            .execute_script("document.getElementById('" + self.PRIORITY[1] + "').value='" + issue.priority + "'")
-        self._driver\
-            .execute_script("document.getElementById('" + self.ASSIGNEE[1] + "').value='" + issue.assignee + "'")
-        self._driver.find_element(*self.SUMMARY).send_keys(issue.summary)
-        self._driver.find_element(*self.CREATE_ISSUE_BTN).click()
+    SUMMARY_ISSUE_VIEW = (By.ID, 'summary-val')
+    PRIORITY_ISSUE_VIEW = (By.ID, 'priority-val')
+    ASSIGNEE_ISSUE_VIEW = (By.ID, 'assignee-val')
+    ISSUE_TYPE_ISSUE_VIEW = (By.ID, 'type-val')
+
+    def fill_form(self, issue, create_or_update='create'):
+        if create_or_update == 'create':
+            self.click_element(*self.PROJECT_SELECT)
+            self.handle_select(*self.PROJECT, text=issue.project)
+            self.send_keys(*self.SUMMARY, text=issue.summary)
+            self.click_element(*self.ISSUE_TYPE_SELECT)
+            self.handle_select(*self.ISSUE_TYPE, text=issue.issue_type)
+            self.click_element(*self.PRIORITY_SELECT)
+            self.handle_select(*self.PRIORITY, text=issue.priority)
+            self.click_element(*self.ASSIGNEE_SELECT)
+            self.handle_select(*self.ASSIGNEE, text=issue.assignee)
+            self.click_element(*self.CREATE_ISSUE_BTN)
+
+        elif create_or_update == 'update':
+            if issue.summary != '':
+                self.send_keys(*self.SUMMARY, text=issue.summary)
+            if issue.issue_type != '':
+                self.click_element(*self.ISSUE_TYPE_SELECT)
+                self.handle_select(*self.ISSUE_TYPE, text=issue.issue_type)
+            if issue.priority != '':
+                self.click_element(*self.PRIORITY_SELECT)
+                self.handle_select(*self.PRIORITY, text=issue.priority)
+            if issue.assignee != '':
+                self.click_element(*self.ASSIGNEE_SELECT)
+                self.handle_select(*self.ASSIGNEE, text=issue.assignee)
+            self.click_element(*self.UPDATE_ISSUE_BTN)
+        time.sleep(2)
+
+    def handle_select(self, *element, text: str):
+        self.send_keys(*element, text=text)
+        self.send_keys(*element, text=Keys.ENTER)
+
+    def get_summary(self):
+        return self.get_element_text(*self.SUMMARY_ISSUE_VIEW)
+
+    def get_priority(self):
+        return self.get_element_text(*self.PRIORITY_ISSUE_VIEW)
+
+    def get_issue_typy(self):
+        return self.get_element_text(*self.ISSUE_TYPE_ISSUE_VIEW)
+
+    def get_assignee(self):
+        return self.get_element_text(*self.ASSIGNEE_ISSUE_VIEW)
+
+    # def fill_update_form(self, issue):
+    #     self.is_visible(*self.SUMMARY)
+    #     if issue.summary != '':
+    #         self._driver.find_element(*self.SUMMARY).send_keys(issue.summary)
+    #     if issue.issue_type != '':
+    #         self._driver \
+    #             .execute_script(
+    #             "document.getElementById('" + self.ISSUE_TYPE[1] + "').value='" + issue.issue_type + "'")
+    #     if issue.priority != '':
+    #         actions = ActionChains(self._driver)
+    #         actions.move_to_element(self._driver.find_element(*self.PRIORITY)).perform()
+    #         self._driver \
+    #             .execute_script("document.getElementById('" + self.PRIORITY[1] + "').value='" + issue.priority + "'")
+    #     if issue.assignee != '':
+    #         actions = ActionChains(self._driver)
+    #         actions.move_to_element(self._driver.find_element(*self.ASSIGNEE)).perform()
+    #         self._driver \
+    #             .execute_script("document.getElementById('" + self.ASSIGNEE[1] + "').value='" + issue.assignee + "'")
+    #     self.click_element(*self.UPDATE_ISSUE_BTN)
+
+    def is_error_displayed(self, error):
+        if error == "You must specify a summary of the issue.":
+            return self.is_visible(*self.SUMMARY_REQUIRED_ERROR)
+        elif error == "Summary must be less than 255 characters.":
+            return self.is_visible(*self.SUMMARY_TOO_LONG_ERROR)
 
 
 class Issue(object):
