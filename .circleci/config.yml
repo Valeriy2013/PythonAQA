@@ -1,10 +1,12 @@
-# Python CircleCI 3.0 configuration file
-version: 3
+# Python CircleCI 3.7 configuration file
+version: 3.7
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7.3-stretch-browsers
-
+      - image: circleci/python:3.7-stretch-browsers
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
     working_directory: ~/PythonAQA
 
     steps:
