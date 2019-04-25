@@ -31,27 +31,21 @@ class CreateIssuePage(BasePage):
         if create_or_update == 'create':
             self.click_element(*self.PROJECT_SELECT)
             self.handle_select(*self.PROJECT, text=issue.project)
-            self.send_keys(*self.SUMMARY, text=issue.summary)
+
+        self.send_keys(*self.SUMMARY, text=issue.summary)
+        if issue.issue_type != self.get_element_value(*self.ISSUE_TYPE):
             self.click_element(*self.ISSUE_TYPE_SELECT)
             self.handle_select(*self.ISSUE_TYPE, text=issue.issue_type)
+        if issue.priority != self.get_element_value(*self.PRIORITY):
             self.click_element(*self.PRIORITY_SELECT)
             self.handle_select(*self.PRIORITY, text=issue.priority)
+        if issue.assignee != self.get_element_value(*self.ASSIGNEE):
             self.click_element(*self.ASSIGNEE_SELECT)
             self.handle_select(*self.ASSIGNEE, text=issue.assignee)
-            self.click_element(*self.CREATE_ISSUE_BTN)
 
+        if create_or_update == 'create':
+            self.click_element(*self.CREATE_ISSUE_BTN)
         elif create_or_update == 'update':
-            if issue.summary != '':
-                self.send_keys(*self.SUMMARY, text=issue.summary)
-            if issue.issue_type != '':
-                self.click_element(*self.ISSUE_TYPE_SELECT)
-                self.handle_select(*self.ISSUE_TYPE, text=issue.issue_type)
-            if issue.priority != '':
-                self.click_element(*self.PRIORITY_SELECT)
-                self.handle_select(*self.PRIORITY, text=issue.priority)
-            if issue.assignee != '':
-                self.click_element(*self.ASSIGNEE_SELECT)
-                self.handle_select(*self.ASSIGNEE, text=issue.assignee)
             self.click_element(*self.UPDATE_ISSUE_BTN)
         time.sleep(2)
 
@@ -65,31 +59,11 @@ class CreateIssuePage(BasePage):
     def get_priority(self):
         return self.get_element_text(*self.PRIORITY_ISSUE_VIEW)
 
-    def get_issue_typy(self):
+    def get_issue_type(self):
         return self.get_element_text(*self.ISSUE_TYPE_ISSUE_VIEW)
 
     def get_assignee(self):
         return self.get_element_text(*self.ASSIGNEE_ISSUE_VIEW)
-
-    # def fill_update_form(self, issue):
-    #     self.is_visible(*self.SUMMARY)
-    #     if issue.summary != '':
-    #         self._driver.find_element(*self.SUMMARY).send_keys(issue.summary)
-    #     if issue.issue_type != '':
-    #         self._driver \
-    #             .execute_script(
-    #             "document.getElementById('" + self.ISSUE_TYPE[1] + "').value='" + issue.issue_type + "'")
-    #     if issue.priority != '':
-    #         actions = ActionChains(self._driver)
-    #         actions.move_to_element(self._driver.find_element(*self.PRIORITY)).perform()
-    #         self._driver \
-    #             .execute_script("document.getElementById('" + self.PRIORITY[1] + "').value='" + issue.priority + "'")
-    #     if issue.assignee != '':
-    #         actions = ActionChains(self._driver)
-    #         actions.move_to_element(self._driver.find_element(*self.ASSIGNEE)).perform()
-    #         self._driver \
-    #             .execute_script("document.getElementById('" + self.ASSIGNEE[1] + "').value='" + issue.assignee + "'")
-    #     self.click_element(*self.UPDATE_ISSUE_BTN)
 
     def is_error_displayed(self, error):
         if error == "You must specify a summary of the issue.":

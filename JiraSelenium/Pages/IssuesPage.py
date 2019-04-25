@@ -37,10 +37,14 @@ class IssuesPage(BasePage):
         self.is_visible(*self.USER_DETAILS)
         return self._driver.find_element(*self.USER_DETAILS).is_displayed()
 
-    def create_issue(self, issue):
-        self.click_element(*self.CREATE_BTN)
+    def create_update_issue(self, issue: Issue, create_or_update='create'):
         create_issue_page = CreateIssuePage(self._driver)
-        create_issue_page.fill_form(issue)
+        if create_or_update == 'create':
+            self.click_element(*self.CREATE_BTN)
+            create_issue_page.fill_form(issue, 'create')
+        elif create_or_update == 'update':
+            self.click_element(*self.EDIT_BTN)
+            create_issue_page.fill_form(issue, 'update')
 
     def is_issue_created(self):
         self.is_visible(*self.ISSUE_CREATED_ALERT)
@@ -98,10 +102,3 @@ class IssuesPage(BasePage):
             self.send_keys(*self.SEARCH_CRITERIA_TEXT, text=criteria.summary)
         self.click_element(*self.SEARCH_BTN)
         time.sleep(2)
-
-    def update(self, old_issue: Issue, new_issue: Issue):
-        self.search(old_issue)
-        self.click_element(By.XPATH, '//a[text()="' + old_issue.summary + '"]')
-        self.click_element(*self.EDIT_BTN)
-        create_issue_page = CreateIssuePage(self._driver)
-        create_issue_page.fill_form(new_issue, 'update')
