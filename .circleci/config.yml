@@ -22,5 +22,12 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
+            mkdir test-reports
             flake8 --exclude=venv* --statistics  --max-line-length 180
-            pytest -v --reruns 3 --reruns-delay 1
+            pytest -v --reruns 3 --reruns-delay 1 --junitxml=test-reports/junit.xml
+
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports
