@@ -24,7 +24,7 @@ jobs:
             . venv/bin/activate
             mkdir test-reports
             flake8 --exclude=venv* --statistics  --max-line-length 180
-            xvfb-run --server-args="-screen 0 1600x1200x24" pytest -v --reruns 3 --reruns-delay 1 --junitxml=test-reports/junit.xml
+            pytest -v --reruns 3 --reruns-delay 1 --junitxml=test-reports/junit.xml
 
       - store_test_results:
           path: test-reports
