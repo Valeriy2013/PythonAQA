@@ -1,10 +1,12 @@
-# Python CircleCI 2.0 configuration file
-version: 2
+# Python CircleCI 3.7 configuration file
+version: 3.7
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7
-
+      - image: circleci/python:3.7-stretch-browsers
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
     working_directory: ~/PythonAQA
 
     steps:
@@ -22,5 +24,12 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
+            mkdir test-reports
             flake8 --exclude=venv* --statistics  --max-line-length 180
-            pytest -v
+            pytest -v --reruns 3 --reruns-delay 1 --junitxml=test-reports/junit.xml
+
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports
