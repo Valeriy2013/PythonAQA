@@ -44,6 +44,7 @@ class CreateIssuePage(BasePage):
             self.handle_select(*self.ASSIGNEE, text=issue.assignee)
 
         if create_or_update == 'create':
+            time.sleep(2)
             self.click_element(*self.CREATE_ISSUE_BTN)
         elif create_or_update == 'update':
             self.click_element(*self.UPDATE_ISSUE_BTN)

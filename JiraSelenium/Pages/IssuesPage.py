@@ -98,7 +98,7 @@ class IssuesPage(BasePage):
             self.send_keys(*self.SEARCH_CRITERIA_ASSIGNEE, text=criteria.assignee)
             self.send_keys(*self.SEARCH_CRITERIA_ASSIGNEE, text=Keys.ENTER)
         if criteria.summary != '':
-            self.click_element(*self.SEARCH_CRITERIA_TEXT)
+            # self.click_element(*self.SEARCH_CRITERIA_TEXT)
             self.send_keys(*self.SEARCH_CRITERIA_TEXT, text=criteria.summary)
         self.click_element(*self.SEARCH_BTN)
         time.sleep(2)

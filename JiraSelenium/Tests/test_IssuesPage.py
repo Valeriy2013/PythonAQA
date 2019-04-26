@@ -7,14 +7,6 @@ from JiraSelenium.Pages.CreateIssuePage import Issue
 class TestIssuesPage(TestTemplate):
 
     @pytest.mark.flaky(reruns=3)
-    def test_create_issue_positive(self):
-        assert self.issues_page.is_at('- Hillel IT School JIRA')
-        assert self.issues_page.is_user_details_visible()
-        issue = Issue('Webinar (WEBINAR)', 'Bug', 'Bug for create test', 'High', 'ValeriiSokolovskyi')
-        self.issues_page.create_update_issue(issue, create_or_update='create')
-        assert self.issues_page.is_issue_created()[0]
-
-    @pytest.mark.flaky(reruns=3)
     def test_create_issue_negative_required_field_missing(self):
         assert self.issues_page.is_at('- Hillel IT School JIRA')
         assert self.issues_page.is_user_details_visible()
@@ -41,7 +33,17 @@ class TestIssuesPage(TestTemplate):
         assert self.create_issue_page.is_error_displayed("Summary must be less than 255 characters.")
 
     @pytest.mark.flaky(reruns=3)
+    def test_create_issue_positive(self):
+        assert self.issues_page.is_at('- Hillel IT School JIRA')
+        assert self.issues_page.is_user_details_visible()
+        issue = Issue('Webinar (WEBINAR)', 'Bug', 'Bug for create test', 'High', 'ValeriiSokolovskyi')
+        self.issues_page.create_update_issue(issue, create_or_update='create')
+        assert self.issues_page.is_issue_created()[0]
+
+    @pytest.mark.flaky(reruns=3)
     def test_search_issue(self):
+        assert self.issues_page.is_at('- Hillel IT School JIRA')
+        assert self.issues_page.is_user_details_visible()
         criteria = Issue('Webinar (WEBINAR)', 'Bug', 'For search test', 'High', 'ValeriiSokolovskyi')
         self.issues_page.create_update_issue(criteria, create_or_update='create')
         assert self.issues_page.is_issue_created()[0]
