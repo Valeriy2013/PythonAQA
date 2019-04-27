@@ -1,6 +1,6 @@
 import pytest
 
-from JiraSelenium.Tests.TestTemplate import TestTemplate
+from JiraSelenium.Tests.ui.TestTemplate import TestTemplate
 from JiraSelenium.Pages.CreateIssuePage import Issue
 
 

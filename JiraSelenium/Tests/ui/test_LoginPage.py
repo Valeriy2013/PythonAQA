@@ -1,10 +1,12 @@
 from JiraSelenium.Pages.LoginPage import LoginPage
 from JiraSelenium.Pages.IssuesPage import IssuesPage
-from JiraSelenium.Tests.TestTemplate import TestTemplate
+from JiraSelenium.Tests.ui.TestTemplate import TestTemplate
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+import JiraSelenium.config as conf
 
 
+# @pytest.mark.usefixtures("get_driver")
 class TestLoginPage(TestTemplate):
 
     def test_login_positive(self):
@@ -28,7 +30,7 @@ class TestLoginPage(TestTemplate):
         self._driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
         self.login_page = LoginPage(self._driver)
         self.issues_page = IssuesPage(self._driver)
-        self.login_page.navigate('https://jira.hillel.it/projects/WEBINAR')
+        self.login_page.navigate(conf.SETTINGS['url'])
 
     def teardown_method(self):
         self._driver.quit()
