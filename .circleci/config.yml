@@ -25,7 +25,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            sudo npm install -g allure-commandLine --save-dev
+            sudo npm install -g allure-commandline --save-dev
       # Step 4: run linter and tests
       - run:
           name: run tests
