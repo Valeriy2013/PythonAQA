@@ -3,7 +3,7 @@ version: 3.7
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7-stretch-browsers
+      - image: circleci/python:3.7-stretch-node-browsers
     environment:
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
