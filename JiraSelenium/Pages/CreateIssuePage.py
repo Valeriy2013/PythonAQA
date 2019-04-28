@@ -1,5 +1,5 @@
 import time
-
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
@@ -27,6 +27,7 @@ class CreateIssuePage(BasePage):
     ASSIGNEE_ISSUE_VIEW = (By.ID, 'assignee-val')
     ISSUE_TYPE_ISSUE_VIEW = (By.ID, 'type-val')
 
+    @allure.step('Fill create|update issue form')
     def fill_form(self, issue, create_or_update='create'):
         if create_or_update == 'create':
             self.click_element(*self.PROJECT_SELECT)
@@ -66,6 +67,7 @@ class CreateIssuePage(BasePage):
     def get_assignee(self):
         return self.get_element_text(*self.ASSIGNEE_ISSUE_VIEW)
 
+    @allure.step('Check error message')
     def is_error_displayed(self, error):
         if error == "You must specify a summary of the issue.":
             return self.is_visible(*self.SUMMARY_REQUIRED_ERROR)

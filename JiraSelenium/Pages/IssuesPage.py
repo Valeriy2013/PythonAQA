@@ -1,5 +1,5 @@
 import time
-
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
@@ -37,6 +37,7 @@ class IssuesPage(BasePage):
         self.is_visible(*self.USER_DETAILS)
         return self._driver.find_element(*self.USER_DETAILS).is_displayed()
 
+    @allure.step('Create|Update issue form')
     def create_update_issue(self, issue: Issue, create_or_update='create'):
         create_issue_page = CreateIssuePage(self._driver)
         if create_or_update == 'create':
@@ -46,6 +47,7 @@ class IssuesPage(BasePage):
             self.click_element(*self.EDIT_BTN)
             create_issue_page.fill_form(issue, 'update')
 
+    @allure.step('Create|Update issue')
     def is_issue_created(self):
         self.is_visible(*self.ISSUE_CREATED_ALERT)
         is_created = self._driver.find_element(*self.ISSUE_CREATED_ALERT).is_displayed()
@@ -60,6 +62,7 @@ class IssuesPage(BasePage):
         elif view == 'Detail':
             self.click_element(*self.DETAIL_VIEW)
 
+    @allure.step('Check "No results" message')
     def no_results(self):
         return self.is_visible(*self.SEARCH_NO_RESULTS)
 
@@ -82,6 +85,7 @@ class IssuesPage(BasePage):
     def get_results_count(self):
         return len(self.get_results())
 
+    @allure.step('Search issue')
     def search(self, criteria: Issue):
         self.click_element(*self.SEARCH_MENU_ITEM)
         self.click_element(*self.SEARCH_FOR_ISSUES)

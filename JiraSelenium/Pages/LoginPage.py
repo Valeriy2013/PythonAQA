@@ -9,7 +9,7 @@ class LoginPage(BasePage):
     LOGIN_BTN = (By.ID, 'login-form-submit')
     LOGIN_ERR = (By.CSS_SELECTOR, '.aui-message.aui-message-error')
 
-    @allure.title('Login to Jira')
+    @allure.step('Login to Jira')
     def login_to_jira(self, name, passw):
         self.set_username(name)
         self.set_password(passw)
@@ -27,7 +27,7 @@ class LoginPage(BasePage):
         self._driver.find_element(*self.PASS_INPUT).clear()
         self._driver.find_element(*self.PASS_INPUT).send_keys(password)
 
-    @allure.step('Submit')
+    @allure.step('Submit login')
     def click_login(self):
         self.is_visible(*self.LOGIN_BTN)
         self._driver.find_element(*self.LOGIN_BTN).click()
