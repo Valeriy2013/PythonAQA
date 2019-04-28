@@ -84,3 +84,6 @@ class Issue(object):
         self.summary = summary
         self.priority = priority
         self.assignee = assignee
+
+    def __str__(self):
+        return "Issue: " + self.summary
