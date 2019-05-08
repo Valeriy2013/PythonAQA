@@ -34,7 +34,7 @@ def pytest_runtest_makereport(item):
     if marker:
         if rep.when == "call" and rep.failed:  # we only look at actual failing test calls, not setup/teardown
             try:
-                allure.attach(item.instance.driver.get_screenshot_as_png(),
+                allure.attach(item.instance._driver.get_screenshot_as_png(),
                               name=item.name,
                               attachment_type=allure.attachment_type.PNG)
             except Exception as e:
