@@ -1,5 +1,11 @@
 # PythonAQA
 
+
+[![CircleCI](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/master.svg?style=svg)](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/master)
+[![CircleCI](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/allure.svg?style=svg)](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/allure)
+
+
+Prerequisites:
 pip install flake8 pytest pytest-cov requests
 pip freeze > requirements.txt
 autopep8 -a -i filename.py
@@ -8,4 +14,8 @@ pytest -v --cov
 
 pip install allure-pytest
 py.test --alluredir=allure-results 
-D:\Tools\allure\2.8.1\bin\allure serve allure-results
+path_to_allure serve allure-results
+
+Tags:
+- ui
+- api
