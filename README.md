@@ -1,8 +1,7 @@
 # PythonAQA
 
-
+Master branch:
 [![CircleCI](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/master.svg?style=svg)](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/master)
-[![CircleCI](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/allure.svg?style=svg)](https://circleci.com/gh/Valeriy2013/PythonAQA/tree/allure)
 
 
 Prerequisites:
