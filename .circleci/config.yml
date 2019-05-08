@@ -14,21 +14,21 @@ jobs:
       - checkout
       # Step 2: create virtual env and install dependencies
       - run:
-          name: install dependencies
+          name: Install dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
       # Step 3: install allure
       - run:
-          name: install allure CLI
+          name: Install allure CLI
           command: |
             python3 -m venv venv
             . venv/bin/activate
             sudo npm install -g allure-commandline --save-dev
       # Step 4: run linter and tests
       - run:
-          name: run tests
+          name: Run tests
           command: |
             . venv/bin/activate
             mkdir test-reports
@@ -36,7 +36,8 @@ jobs:
             python3 -m pytest -v --reruns 3 --reruns-delay 1 --alluredir ~/PythonAQA/raw_test_results_json
       # Step 5: Generate HTML report
       - run:
-          name: report
+          name: Generate report
+          when: always
           command: |
             allure generate -c ~/PythonAQA/raw_test_results_json -o ~/PythonAQA/test-reports
 
