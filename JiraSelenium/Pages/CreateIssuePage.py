@@ -45,7 +45,7 @@ class CreateIssuePage(BasePage):
             self.handle_select(*self.ASSIGNEE, text=issue.assignee)
 
         if create_or_update == 'create':
-            time.sleep(2)
+            time.sleep(5)
             self.click_element(*self.CREATE_ISSUE_BTN)
         elif create_or_update == 'update':
             self.click_element(*self.UPDATE_ISSUE_BTN)
@@ -54,7 +54,6 @@ class CreateIssuePage(BasePage):
     def handle_select(self, *element, text: str):
         self.send_keys(*element, text=text)
         self.send_keys(*element, text=Keys.ENTER)
-        time.sleep(1)
 
     def get_summary(self):
         return self.get_element_text(*self.SUMMARY_ISSUE_VIEW)
