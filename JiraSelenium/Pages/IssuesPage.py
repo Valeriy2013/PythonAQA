@@ -89,14 +89,14 @@ class IssuesPage(BasePage):
     def search(self, criteria: Issue):
         self.click_element(*self.SEARCH_MENU_ITEM)
         self.click_element(*self.SEARCH_FOR_ISSUES)
-        if criteria.project != '':
-            self.click_element(*self.SEARCH_CRITERIA_PROJECT_DIV)
-            self.send_keys(*self.SEARCH_CRITERIA_PROJECT, text=criteria.project)
-            self.send_keys(*self.SEARCH_CRITERIA_PROJECT, text=Keys.ENTER)
         if criteria.issue_type != '':
             self.click_element(*self.SEARCH_CRITERIA_ISSUE_TYPE_DIV)
             self.send_keys(*self.SEARCH_CRITERIA_ISSUE_TYPE, text=criteria.issue_type)
             self.send_keys(*self.SEARCH_CRITERIA_ISSUE_TYPE, text=Keys.ENTER)
+        if criteria.project != '':
+            self.click_element(*self.SEARCH_CRITERIA_PROJECT_DIV)
+            self.send_keys(*self.SEARCH_CRITERIA_PROJECT, text=criteria.project)
+            self.send_keys(*self.SEARCH_CRITERIA_PROJECT, text=Keys.ENTER)
         if criteria.assignee != '':
             self.click_element(*self.SEARCH_CRITERIA_ASSIGNEE_DIV)
             self.send_keys(*self.SEARCH_CRITERIA_ASSIGNEE, text=criteria.assignee)
