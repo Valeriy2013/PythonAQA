@@ -12,7 +12,6 @@ import JiraSelenium.config as conf
 class TestIssuesPage:
 
     @pytest.mark.ui
-    @pytest.mark.flaky(reruns=3)
     def test_create_issue_negative_required_field_missing(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
@@ -26,7 +25,6 @@ class TestIssuesPage:
         assert self.create_issue_page.is_error_displayed("You must specify a summary of the issue.")
 
     @pytest.mark.ui
-    @pytest.mark.flaky(reruns=3)
     def test_create_issue_negative_long_field(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
@@ -50,7 +48,7 @@ class TestIssuesPage:
         assert self.create_issue_page.is_error_displayed("Summary must be less than 255 characters.")
 
     @pytest.mark.ui
-    @pytest.mark.flaky(reruns=3)
+    @pytest.mark.flaky(reruns=5)
     def test_create_issue_positive(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
@@ -63,7 +61,7 @@ class TestIssuesPage:
         assert self.issues_page.is_issue_created()[0]
 
     @pytest.mark.ui
-    @pytest.mark.flaky(reruns=3)
+    @pytest.mark.flaky(reruns=5)
     def test_search_issue(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
