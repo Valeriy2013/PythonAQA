@@ -4,9 +4,10 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7-stretch-node-browsers
+        environment:
+          TZ: "Europe/Kiev"
     environment:
-      - SCREEN_WIDTH=1920
-      - SCREEN_HEIGHT=1080
+      TZ: "Europe/Kiev"
     working_directory: ~/PythonAQA
 
     steps:
@@ -26,9 +27,6 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             sudo npm install -g allure-commandline --save-dev
-      - run:
-          name: Switch timezone to Kiev
-          command: sudo cp /usr/share/zoneinfo/Europe/Kiev /etc/localtime
       # Step 4: run linter and tests
       - run:
           name: Run tests
