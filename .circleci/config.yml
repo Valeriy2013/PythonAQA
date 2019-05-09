@@ -6,12 +6,12 @@ jobs:
       - image: circleci/python:3.7-stretch-node-browsers
         environment:
           TZ: "Europe/Kiev"
-          SCREEN_WIDTH: 1600
-          SCREEN_HEIGHT: 1200
+          SCREEN_WIDTH: 1920
+          SCREEN_HEIGHT: 1080
     environment:
       TZ: "Europe/Kiev"
-      SCREEN_WIDTH: 1600
-      SCREEN_HEIGHT: 1200
+      SCREEN_WIDTH: 1920
+      SCREEN_HEIGHT: 1080
     working_directory: ~/PythonAQA
 
     steps:
