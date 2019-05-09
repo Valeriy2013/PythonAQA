@@ -16,7 +16,7 @@ def get_driver(request):
     chrome_options.add_argument('--disable-infobars')
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-xss-auditor")
-    chrome_options.add_argument("--window-size=1920,1080")
+    # chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--start-maximized")
     _driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
     request.cls.driver = _driver
