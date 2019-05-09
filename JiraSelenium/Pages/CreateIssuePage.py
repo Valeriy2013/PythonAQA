@@ -37,12 +37,12 @@ class CreateIssuePage(BasePage):
         if issue.issue_type != self.get_element_value(*self.ISSUE_TYPE):
             self.click_element(*self.ISSUE_TYPE_SELECT)
             self.handle_select(*self.ISSUE_TYPE, text=issue.issue_type)
-        if issue.assignee != self.get_element_value(*self.ASSIGNEE):
-            self.click_element(*self.ASSIGNEE_SELECT)
-            self.handle_select(*self.ASSIGNEE, text=issue.assignee)
         if issue.priority != self.get_element_value(*self.PRIORITY):
             self.click_element(*self.PRIORITY_SELECT)
             self.handle_select(*self.PRIORITY, text=issue.priority)
+        if issue.assignee != self.get_element_value(*self.ASSIGNEE):
+            self.click_element(*self.ASSIGNEE_SELECT)
+            self.handle_select(*self.ASSIGNEE, text=issue.assignee)
 
         if create_or_update == 'create':
             time.sleep(2)
@@ -54,6 +54,7 @@ class CreateIssuePage(BasePage):
     def handle_select(self, *element, text: str):
         self.send_keys(*element, text=text)
         self.send_keys(*element, text=Keys.ENTER)
+        time.sleep(1)
 
     def get_summary(self):
         return self.get_element_text(*self.SUMMARY_ISSUE_VIEW)
