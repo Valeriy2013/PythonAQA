@@ -18,6 +18,7 @@ def get_driver(request):
     chrome_options.add_argument("--disable-xss-auditor")
     chrome_options.add_argument("--start-maximized")
     _driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+    request.cls.driver = _driver
 
     def close_driver():
         _driver.quit()
@@ -26,8 +27,9 @@ def get_driver(request):
     return _driver
 
 
-@pytest.hookimpl(hookwrapper=True, tryfirst=True)
-def pytest_runtest_makereport(item):
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    # execute all other hooks to obtain the report object
     outcome = yield
     rep = outcome.get_result()
     marker = item.get_closest_marker("ui")
