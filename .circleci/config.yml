@@ -26,6 +26,9 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             sudo npm install -g allure-commandline --save-dev
+      - run:
+          name: Switch timezone to Kiev
+          command: sudo cp /usr/share/zoneinfo/Europe/Kiev /etc/localtime
       # Step 4: run linter and tests
       - run:
           name: Run tests
