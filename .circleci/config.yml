@@ -4,11 +4,11 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7-stretch-node-browsers
-      - SCREEN_WIDTH=1920
-      - SCREEN_HEIGHT=1080
-      environment:
+        environment:
           TZ: "Europe/Kiev"
     environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
       TZ: "Europe/Kiev"
     working_directory: ~/PythonAQA
 
