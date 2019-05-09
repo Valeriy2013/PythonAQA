@@ -8,10 +8,6 @@ jobs:
           TZ: "Europe/Kiev"
           SCREEN_WIDTH: 1920
           SCREEN_HEIGHT: 1080
-    environment:
-      TZ: "Europe/Kiev"
-      SCREEN_WIDTH: 1920
-      SCREEN_HEIGHT: 1080
     working_directory: ~/PythonAQA
 
     steps:
