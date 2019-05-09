@@ -43,13 +43,12 @@ class CreateIssuePage(BasePage):
         if issue.assignee != self.get_element_value(*self.ASSIGNEE):
             self.click_element(*self.ASSIGNEE_SELECT)
             self.handle_select(*self.ASSIGNEE, text=issue.assignee)
-
+            self.send_keys(*self.ASSIGNEE, text=Keys.ESCAPE)
         if create_or_update == 'create':
-            time.sleep(5)
             self.click_element(*self.CREATE_ISSUE_BTN)
         elif create_or_update == 'update':
             self.click_element(*self.UPDATE_ISSUE_BTN)
-        time.sleep(2)
+        time.sleep(3)
 
     def handle_select(self, *element, text: str):
         self.send_keys(*element, text=text)

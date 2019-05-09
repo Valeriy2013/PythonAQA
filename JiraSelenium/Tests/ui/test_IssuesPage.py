@@ -46,7 +46,7 @@ class TestIssuesPage:
         self.issues_page.create_update_issue(issue, create_or_update='create')
         assert self.create_issue_page.is_error_displayed("Summary must be less than 255 characters.")
 
-    @pytest.mark.flaky(reruns=5)
+    @pytest.mark.flaky(reruns=7)
     def test_create_issue_positive(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
@@ -58,7 +58,7 @@ class TestIssuesPage:
         self.issues_page.create_update_issue(issue, create_or_update='create')
         assert self.issues_page.is_issue_created()[0]
 
-    @pytest.mark.flaky(reruns=5)
+    @pytest.mark.flaky(reruns=7)
     def test_search_issue(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
@@ -74,7 +74,6 @@ class TestIssuesPage:
         assert criteria.summary in self.issues_page.get_row_content(0)
         # assert self.issues_page.get_results_count() == 1
 
-    @pytest.mark.flaky(reruns=3)
     def test_search_no_issue_found(self, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
@@ -90,7 +89,6 @@ class TestIssuesPage:
         Issue('Webinar (WEBINAR)', 'Bug', 'Bug for update test', 'Low', 'ValeriiSokolovskyi'),
         Issue('Webinar (WEBINAR)', 'Bug', 'Bug for update test', 'Highest', 'Unassigned')
     ])
-    @pytest.mark.flaky(reruns=3)
     def test_update_issue(self, updated_issue, get_driver):
         self.login_page = LoginPage(get_driver)
         self.issues_page = IssuesPage(get_driver)
