@@ -70,7 +70,7 @@ class TestIssuesPage:
         self.issues_page.create_update_issue(criteria, create_or_update='create')
         assert self.issues_page.is_issue_created()[0]
         self.issues_page.search(criteria)
-        # self.issues_page.switch_view('List')
+        self.issues_page.switch_view('List')
         assert criteria.summary in self.issues_page.get_row_content(0)
         # assert self.issues_page.get_results_count() == 1
 
@@ -81,7 +81,7 @@ class TestIssuesPage:
         self.login_page.login_to_jira(conf.SETTINGS['login'], conf.SETTINGS['password'])
         criteria = Issue('Webinar (WEBINAR)', 'Bug', '###WILL NOT BE FOUND###', '', '')
         self.issues_page.search(criteria)
-        # self.issues_page.switch_view('List')
+        self.issues_page.switch_view('List')
         assert self.issues_page.no_results()
 
     @pytest.mark.parametrize('updated_issue', [
