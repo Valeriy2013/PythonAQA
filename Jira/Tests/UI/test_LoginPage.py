@@ -1,6 +1,6 @@
-from JiraSelenium.Pages.LoginPage import LoginPage
-from JiraSelenium.Pages.IssuesPage import IssuesPage
-import JiraSelenium.config as conf
+from Jira.Pages.LoginPage import LoginPage
+from Jira.Pages.IssuesPage import IssuesPage
+import Jira.config as conf
 import pytest
 
 

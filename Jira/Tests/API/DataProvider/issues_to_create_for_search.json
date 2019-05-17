@@ -1,0 +1,30 @@
+{
+  "issueUpdates": [
+    {
+      "fields": {
+        "project":
+       {
+          "key": "WEBINAR"
+       },
+       "summary": "Created via REST",
+       "description": "Test bug for search #1",
+       "issuetype": {
+          "name": "Bug"
+       }
+      }
+    },
+    {
+      "fields": {
+        "project":
+       {
+          "key": "WEBINAR"
+       },
+       "summary": "Created via REST",
+       "description": "Test bug for search #2",
+       "issuetype": {
+          "name": "Bug"
+       }
+      }
+    }
+  ]
+}

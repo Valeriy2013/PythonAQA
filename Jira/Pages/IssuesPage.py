@@ -3,9 +3,9 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-from JiraSelenium.Pages.BasePage import BasePage
-from JiraSelenium.Pages.CreateIssuePage import CreateIssuePage
-from JiraSelenium.Pages.CreateIssuePage import Issue
+from Jira.Pages.BasePage import BasePage
+from Jira.Pages.CreateIssuePage import CreateIssuePage
+from Jira.Pages.CreateIssuePage import Issue
 
 
 class IssuesPage(BasePage):

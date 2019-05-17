@@ -1,10 +1,10 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-from JiraSelenium.Pages.CreateIssuePage import CreateIssuePage
-from JiraSelenium.Pages.IssuesPage import IssuesPage
-from JiraSelenium.Pages.LoginPage import LoginPage
-import JiraSelenium.config as conf
+from Jira.Pages.CreateIssuePage import CreateIssuePage
+from Jira.Pages.IssuesPage import IssuesPage
+from Jira.Pages.LoginPage import LoginPage
+import Jira.config as conf
 
 
 class TestTemplate:

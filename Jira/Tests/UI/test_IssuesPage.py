@@ -1,11 +1,11 @@
 import pytest
 
-from JiraSelenium.Pages.LoginPage import LoginPage
-from JiraSelenium.Pages.IssuesPage import IssuesPage
-from JiraSelenium.Pages.CreateIssuePage import CreateIssuePage
-from JiraSelenium.Pages.CreateIssuePage import Issue
+from Jira.Pages.LoginPage import LoginPage
+from Jira.Pages.IssuesPage import IssuesPage
+from Jira.Pages.CreateIssuePage import CreateIssuePage
+from Jira.Pages.CreateIssuePage import Issue
 
-import JiraSelenium.config as conf
+import Jira.config as conf
 
 
 @pytest.mark.usefixtures("get_driver")
