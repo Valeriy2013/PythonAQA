@@ -1,6 +1,12 @@
 {
   "fields": {
     "summary": "Updated via REST",
-    "description": "Updated description"
+    "description": "Updated description",
+    "assignee": {
+      "name": "ValeriiSokolovskyi"
+    },
+    "priority": {
+      "name": "Highest"
+    }
   }
 }

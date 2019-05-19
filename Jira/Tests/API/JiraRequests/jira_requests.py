@@ -7,6 +7,11 @@ import Jira.config as conf
 import Jira.Tests.API.JiraRequests.endpoints as endpoints
 
 
+def login(login_info):
+    response = requests.post(conf.SETTINGS['api_base_url'] + endpoints.login_endpoint, json=login_info)
+    return response.status_code, response.json()
+
+
 def get_issue_by_id(key, fields='*all'):
     if fields != '*all':
         response = requests.get(conf.SETTINGS['api_base_url'] +

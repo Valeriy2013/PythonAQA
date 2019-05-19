@@ -25,6 +25,45 @@
           "name": "Bug"
        }
       }
+    },
+    {
+      "fields": {
+        "project":
+       {
+          "key": "WEBINAR"
+       },
+       "summary": "Created via REST",
+       "description": "Test bug for search #3",
+       "issuetype": {
+          "name": "Bug"
+       }
+      }
+    },
+    {
+      "fields": {
+        "project":
+       {
+          "key": "WEBINAR"
+       },
+       "summary": "Created via REST",
+       "description": "Test bug for search #4",
+       "issuetype": {
+          "name": "Bug"
+       }
+      }
+    },
+    {
+      "fields": {
+        "project":
+       {
+          "key": "WEBINAR"
+       },
+       "summary": "Created via REST",
+       "description": "Test bug for search #5",
+       "issuetype": {
+          "name": "Bug"
+       }
+      }
     }
   ]
 }

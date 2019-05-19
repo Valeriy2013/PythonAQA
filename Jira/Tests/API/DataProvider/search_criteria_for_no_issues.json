@@ -1,5 +1,5 @@
 {
-    "jql": "project = WEBINAR and description ~ 'test bug for search'",
+    "jql": "project = WEBINAR and description ~ 'Test bug for search not found'",
     "startAt": 0,
     "maxResults": 15,
     "fields": [

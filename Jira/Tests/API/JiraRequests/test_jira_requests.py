@@ -10,7 +10,31 @@ import pytest
 @pytest.mark.api
 class TestJiraRequests:
 
-    def test_create_issue(self):
+    @pytest.mark.parametrize('login_info', [
+        {
+            "username": "ValeriiSokolovskyi",
+            "password": "ValeriiSokolovskyi"
+        }])
+    def test_login_positive(self, login_info):
+        status_code, response = jira_requests.login(login_info)
+        assert status_code == 200
+        assert response['session']['name'] == "JSESSIONID"
+
+    @pytest.mark.parametrize('login_info', [
+        {
+            "username": "ValeriiSokolovskyi",
+            "password": "WrongPassword"
+        },
+        {
+            "username": "WrongLoginName",
+            "password": "ValeriiSokolovskyi"
+        }])
+    def test_login_negative(self, login_info):
+        status_code, response = jira_requests.login(login_info)
+        assert status_code == 401
+        assert response['errorMessages'][0] == "Login failed"
+
+    def test_create_issue_positive(self):
         # create an issue
         file = "issue_to_create.json"
         issue_to_create = json_data_provider.get_json_data(file)
@@ -22,10 +46,27 @@ class TestJiraRequests:
         get_status_code, get_response = jira_requests.get_issue_by_id(new_key, 'summary,description')
         assert get_status_code == 200
         assert get_response['fields']['summary'] == "Created via REST"
-        assert get_response['fields']['description'] == "Creating of an issue using project keys and issue type names using the REST API"
+        assert get_response['fields'][
+                   'description'] == "Creating of an issue using project keys and issue type names using the REST API"
 
         # delete created issue
         jira_requests.delete_issue(new_key)
+
+    def test_create_issue_negative_required_field_missing(self):
+        # create an issue
+        file = "issue_to_create_missing_required_field.json"
+        issue_to_create = json_data_provider.get_json_data(file)
+        status_code, response = jira_requests.create_issue(issue_to_create)
+        assert status_code == 400
+        assert response['errors']['summary'] == "You must specify a summary of the issue."
+
+    def test_create_issue_negative_long_field(self):
+        # create an issue
+        file = "issue_to_create_long_field_name.json"
+        issue_to_create = json_data_provider.get_json_data(file)
+        status_code, response = jira_requests.create_issue(issue_to_create)
+        assert status_code == 400
+        assert response['errors']['summary'] == "Summary must be less than 255 characters."
 
     def test_delete_issue(self):
         # create issue for deletion
@@ -77,11 +118,24 @@ class TestJiraRequests:
             keys.append(response["issues"][i]["key"])
 
         # search created issues
-        file = "search_criteria.json"
+        file = "search_criteria_for_single_issue.json"
         search_criteria = json_data_provider.get_json_data(file)
         search_status_code, search_response = jira_requests.search_issue(search_criteria)
         assert search_status_code == 200
+        assert search_response["total"] == 1
+
+        file = "search_criteria_for_five_issues.json"
+        search_criteria = json_data_provider.get_json_data(file)
+        search_status_code, search_response = jira_requests.search_issue(search_criteria)
+        assert search_status_code == 200
+        assert search_response["total"] == 5
+
+        file = "search_criteria_for_no_issues.json"
+        search_criteria = json_data_provider.get_json_data(file)
+        search_status_code, search_response = jira_requests.search_issue(search_criteria)
+        assert search_status_code == 200
+        assert search_response["total"] == 0
 
         # delete created issues
-        jira_requests.delete_issue(keys[0])
-        jira_requests.delete_issue(keys[1])
+        for i in range(keys_length):
+            jira_requests.delete_issue(keys[i])
