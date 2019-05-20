@@ -1,4 +1,4 @@
-from JiraSelenium.Pages.BasePage import BasePage
+from Jira.Pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 import allure
 

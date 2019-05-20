@@ -1,0 +1,13 @@
+{
+    "fields": {
+        "project":
+       {
+          "key": "WEBINAR"
+       },
+       "summary": "",
+       "description": "Creating of an issue with missing summary",
+       "issuetype": {
+          "name": "Bug"
+       }
+    }
+}
