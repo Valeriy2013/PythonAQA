@@ -34,7 +34,7 @@ jobs:
             . venv/bin/activate
             mkdir test-reports
             flake8 --exclude=venv* --statistics  --max-line-length 180
-            python3 -m pytest -m "not ui" -v --reruns 3 --reruns-delay 1 --alluredir ~/PythonAQA/raw_test_results_json
+            python3 -m pytest -v --reruns 3 --reruns-delay 1 --alluredir ~/PythonAQA/raw_test_results_json
       # Step 5: Generate HTML report
       - run:
           name: Generate report
