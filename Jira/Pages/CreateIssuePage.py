@@ -17,7 +17,7 @@ class CreateIssuePage(BasePage):
     ASSIGNEE_SELECT = (By.ID, 'assignee-single-select')
     SUMMARY = (By.ID, 'summary')
     UPDATE_ISSUE_BTN = (By.ID, 'edit-issue-submit')
-    CREATE_ISSUE_BTN = (By.ID, 'create-issue-submit')
+    CREATE_ISSUE_BTN = (By.XPATH, '//input[@id="create-issue-submit"]')
     CANCEL_BTN = (By.CSS_SELECTOR, 'a.cancel')
     SUMMARY_REQUIRED_ERROR = (By.XPATH, '//*[@class="error" and text() = "You must specify a summary of the issue."]')
     SUMMARY_TOO_LONG_ERROR = (By.XPATH, '//*[@class="error" and text() = "Summary must be less than 255 characters."]')
@@ -43,7 +43,6 @@ class CreateIssuePage(BasePage):
         if issue.assignee != self.get_element_value(*self.ASSIGNEE):
             self.click_element(*self.ASSIGNEE_SELECT)
             self.handle_select(*self.ASSIGNEE, text=issue.assignee)
-        self.send_keys(*self.ASSIGNEE, text=Keys.TAB)
         if create_or_update == 'create':
             self.click_element(*self.CREATE_ISSUE_BTN)
         elif create_or_update == 'update':
