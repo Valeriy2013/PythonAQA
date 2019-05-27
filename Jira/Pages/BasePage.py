@@ -64,7 +64,7 @@ class BasePage(object):
         result = False
         while attempts < 3:
             try:
-                print "click element: ", attempts
+                print("click element: ", attempts)
                 self.is_visible(*locator)
                 self.is_clickable(*locator)
                 self._driver.find_element(*locator).click()
