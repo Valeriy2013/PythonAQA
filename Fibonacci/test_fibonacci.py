@@ -14,5 +14,5 @@ class TestFibonacci:
         assert [1, 1, 2, 3, 5, 8, 13] == fibonacci.generateFibonacci(7)
 
     def test_randomNumber(self):
-        num = random.randint(1,2)
+        num = random.randint(1, 2)
         assert num == 2
