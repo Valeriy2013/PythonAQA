@@ -3,6 +3,7 @@ Unit tests for the fibonacci library
 """
 
 import fibonacci
+import pytest
 
 
 class TestFibonacci:
