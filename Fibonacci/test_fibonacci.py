@@ -6,8 +6,8 @@ import fibonacci
 import pytest
 
 
+@pytest.mark.fibonacci
 class TestFibonacci:
 
-    @pytest.mark.general
     def test_generateFibonacci(self):
         assert [1, 1, 2, 3, 5, 8, 13] == fibonacci.generateFibonacci(7)
