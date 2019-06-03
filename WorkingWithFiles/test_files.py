@@ -3,9 +3,11 @@ Unit tests for the files library
 """
 
 import WorkingWithFiles.files as f
+import pytest
 from WorkingWithFiles.files import Person
 
 
+@pytest.mark.files
 class TestWorkingWithFiles:
 
     # @pytest.mark.parametrize("path", ["samples/xml/test_data.xml", "samples/json/updated_test_data.json"])
